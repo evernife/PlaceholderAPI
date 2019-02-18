@@ -29,6 +29,8 @@ import me.rojo8399.placeholderapi.Observer;
 import me.rojo8399.placeholderapi.impl.PlaceholderAPIPlugin;
 import me.rojo8399.placeholderapi.impl.configs.JavascriptManager;
 import me.rojo8399.placeholderapi.impl.configs.Messages;
+import me.rojo8399.placeholderapi.impl.integration.LuckPermsUtil;
+import me.rojo8399.placeholderapi.impl.integration.NucleusUtil;
 import me.rojo8399.placeholderapi.impl.utils.TypeUtils;
 import ninja.leaping.configurate.objectmapping.Setting;
 import ninja.leaping.configurate.objectmapping.serialize.ConfigSerializable;
@@ -609,7 +611,11 @@ public class Defaults {
             return p.getPermissionValue(p.getActiveContexts(), op).toString();
         }
         switch (token) {
+            case "nickname":
+                if (NucleusUtil.apiLoaded) return NucleusUtil.getNick(p);
+                return p.getName();
             case "prefix":
+                if (LuckPermsUtil.apiLoaded) return LuckPermsUtil.getPlayerPrefix(p);
             case "suffix":
                 return p.getOption(token).orElse("");
             case "can_fly":

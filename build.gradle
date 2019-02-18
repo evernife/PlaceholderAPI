@@ -7,10 +7,25 @@ version = '4.5.1'
 description = 'An API for all of your placeholders.'
 
 compileJava.options.encoding = 'UTF-8'
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
+    maven { url 'https://jitpack.io' }
+}
 
 dependencies {
     compile 'org.slf4j:slf4j-api:1.7.21'
     compile 'org.reflections:reflections:0.9.10'
     compile 'ninja.leaping.configurate:configurate-hocon:3.2'
     compile 'org.spongepowered:spongeapi:7.1.0-SNAPSHOT'
+
+    compile 'me.lucko.luckperms:luckperms-api:4.3'
+    compile 'com.github.NucleusPowered:Nucleus:1.8.3'
 }

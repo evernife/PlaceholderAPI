@@ -37,6 +37,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import me.rojo8399.placeholderapi.ExpansionBuilder;
+import me.rojo8399.placeholderapi.impl.integration.LuckPermsUtil;
+import me.rojo8399.placeholderapi.impl.integration.NucleusUtil;
 import org.slf4j.Logger;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.Sponge;
@@ -339,6 +341,8 @@ public class PlaceholderAPIPlugin {
                 return (HashMap<String, Integer>) exp.stream().collect(Collectors.toMap(e -> e, e -> 1));
             }
         });
+        LuckPermsUtil.initialize();
+        NucleusUtil.initialize();
     }
 
     @Listener
